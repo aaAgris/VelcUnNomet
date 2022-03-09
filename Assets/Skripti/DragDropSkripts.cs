@@ -30,6 +30,7 @@ public class DragDropSkripts : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
 		kanvasGrupa.alpha = 0.6f;
 		//Lai objektam velktoit iet cauri raycast stari
 		kanvasGrupa.blocksRaycasts = false;
+		objektuSkripts.pedejaisVilktais = null;
 	}
 
 	public void OnDrag(PointerEventData notikums){
@@ -41,6 +42,7 @@ public class DragDropSkripts : MonoBehaviour,IBeginDragHandler,IDragHandler,IEnd
 	public void OnEndDrag(PointerEventData notikums){
 		Debug.Log ("BeigtaObjektaVilksana");
 		kanvasGrupa.alpha =1f;
+		objektuSkripts.pedejaisVilktais = notikums.pointerDrag;
 		//ja obj nav ista vieta
 		if(objektuSkripts.vaiIstajaVieta == false){
 			//tad to atkal var vilkt
