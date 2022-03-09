@@ -4,7 +4,7 @@ using UnityEngine;
 //jaimportee lai lietotu I interfeisus
 using UnityEngine.EventSystems;
 
-public class DragDropSkripts : MonoBehaviour,IPointerDownHandler,IBeginDragHandler,IDragHandler,IEndDragHandler {
+public class DragDropSkripts : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDragHandler {
 	//Velkamajam objektam piestiprinata komponente
 	private CanvasGroup kanvasGrupa;
 	//Priekś parvietojama objekta atrasnaas vietas uzglabasanas
@@ -27,7 +27,7 @@ public class DragDropSkripts : MonoBehaviour,IPointerDownHandler,IBeginDragHandl
 	public void OnBeginDrag(PointerEventData notikums){
 		Debug.Log ("Uzsakta vilksana!");
 		//velkot objekts paliek caurspidigs
-		kanvasGrupa.alpha = 0.6F;
+		kanvasGrupa.alpha = 0.6f;
 		//Lai objektam velktoit iet cauri raycast stari
 		kanvasGrupa.blocksRaycasts = false;
 	}
@@ -40,6 +40,18 @@ public class DragDropSkripts : MonoBehaviour,IPointerDownHandler,IBeginDragHandl
 
 	public void OnEndDrag(PointerEventData notikums){
 		Debug.Log ("BeigtaObjektaVilksana");
+		kanvasGrupa.alpha =1f;
+		//ja obj nav ista vieta
+		if(objektuSkripts.vaiIstajaVieta == false){
+			//tad to atkal var vilkt
+			kanvasGrupa.blocksRaycasts = true;
+		}else{
+			//aizmirst pedejo objektu kas vilkts
+			objektuSkripts.pedejaisVilktais = null;
+		}
+		//ja viens objekts ista vieta
+		objektuSkripts.vaiIstajaVieta = false;
 
-	}
+}
+
 }
